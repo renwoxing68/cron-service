@@ -1,0 +1,9 @@
+[[tasks]]
+name = "任务"
+spec = "30 * * * * *"
+cmd = "cd /Users/dxm/go/src/cron-service && echo 'aa' >> test.log"
+
+[[tasks]]
+name = "任务1"
+spec = "@every 1h"
+cmd = "cd /Users/dxm/go/src/cron-service && echo 'aa' >> test.log"
