@@ -120,7 +120,7 @@ func initLog() *log.Logger {
 	if err != nil {
 		panic(err)
 	}
-	return log.New(logFile, "[logTool]", log.LstdFlags|log.Lshortfile|log.LUTC)
+	return log.New(logFile, "[logTool]", log.LstdFlags|log.Lshortfile)
 }
 
 // 读取配置
