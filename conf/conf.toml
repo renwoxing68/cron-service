@@ -1,9 +1,9 @@
 [[tasks]]
 name = "任务每5秒"
 spec = "@every 5s"
-cmd = "cd /Users/dxm/go/src/cron-service && echo 'aa' >> aa.log"
+cmd = "ll"
 
 [[tasks]]
 name = "任务每2秒"
 spec = "@every 2s"
-cmd = "cd /Users/dxm/go/src/cron-service && echo 'bb' >> bb.log"
+cmd = "ll"

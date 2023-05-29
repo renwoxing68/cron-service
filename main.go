@@ -75,12 +75,17 @@ func main() {
 func addTask(conf TaskInfoConf) error {
 	entryID, err := c.AddFunc(conf.Spec, func() {
 		logger := initLog()
-		cmd := exec.Command("/bin/bash", "-c", conf.Cmd)
-		e := cmd.Run()
-		logger.Printf("任务：%s,conf:%v,err:%v", conf.Name, conf, e)
-		if e != nil {
-			logger.Printf("cmd执行失败：%s,conf:%v,err:%v", conf.Name, conf, e)
+		//cmd := exec.Command("/bin/bash", "-c", conf.Cmd)
+		start := time.Now()
+		cmd := exec.Command(conf.Cmd)
+		err := cmd.Run()
+		cmd.Output()
+		if err != nil {
+			logger.Printf("cmd run 执行失败：%s,conf:%v,err:%v", conf.Name, conf, err)
+			return
 		}
+		elapsed := time.Since(start)
+		logger.Printf("执行success：%s,conf:%v time cost %d", conf.Name, conf, elapsed.Milliseconds())
 	})
 	if err != nil {
 		return err
