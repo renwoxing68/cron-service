@@ -153,6 +153,7 @@ func updateConf() {
 		return
 	}
 	var ok bool
+	var isUpdate bool
 	//是否有新增任务
 	for _, lastConf := range lastConfMap {
 		if _, ok = confMap[lastConf.Name]; !ok { //新增
@@ -161,6 +162,7 @@ func updateConf() {
 				log.Printf("fun updateConf 任务添加失败：%s,conf:%v,err:%v", lastConf.Name, lastConf, err)
 				return
 			}
+			isUpdate = true
 		} else {
 			//配置不变跳过
 			if lastConf == confMap[lastConf.Name] {
@@ -174,6 +176,7 @@ func updateConf() {
 				log.Printf("fun updateConf 任务添加失败：%s,conf:%v,err:%v", lastConf.Name, lastConf, err)
 				return
 			}
+			isUpdate = true
 		}
 	}
 	//移除已经删除的任务
@@ -186,4 +189,7 @@ func updateConf() {
 		}
 	}
 	confMap = lastConfMap
+	if isUpdate {
+		log.Printf("fun updateConf 定时配置已更新 confMap:%v EntryMap:%v", confMap, EntryMap)
+	}
 }
